@@ -68,25 +68,29 @@ public final class SubtitleDialog extends BaseDialog {
         binding.reset.setOnClickListener(this::onReset);
     }
 
-    private void onUp(View view) {
-        subtitleView.addBottomPadding(0.005f);
-        Setting.putSubtitleBottomPadding(subtitleView.getBottomPadding());
-    }
+   private void onUp(View view) {
+    float padding = subtitleView.getBottomPaddingFraction() + 0.005f;
+    subtitleView.setBottomPaddingFraction(padding);
+    Setting.putSubtitleBottomPadding(padding);
+}
 
-    private void onDown(View view) {
-        subtitleView.subBottomPadding(0.005f);
-        Setting.putSubtitleBottomPadding(subtitleView.getBottomPadding());
-    }
+private void onDown(View view) {
+    float padding = subtitleView.getBottomPaddingFraction() - 0.005f;
+    subtitleView.setBottomPaddingFraction(padding);
+    Setting.putSubtitleBottomPadding(padding);
+}
 
-    private void onLarge(View view) {
-        subtitleView.addTextSize(0.002f);
-        Setting.putSubtitleTextSize(subtitleView.getTextSize());
-    }
+private void onLarge(View view) {
+    float size = subtitleView.getFractionalTextSize() + 0.002f;
+    subtitleView.setFractionalTextSize(size);
+    Setting.putSubtitleTextSize(size);
+}
 
-    private void onSmall(View view) {
-        subtitleView.subTextSize(0.002f);
-        Setting.putSubtitleTextSize(subtitleView.getTextSize());
-    }
+private void onSmall(View view) {
+    float size = subtitleView.getFractionalTextSize() - 0.002f;
+    subtitleView.setFractionalTextSize(size);
+    Setting.putSubtitleTextSize(size);
+}
 
     private void onReset(View view) {
         Setting.putSubtitleTextSize(0);
