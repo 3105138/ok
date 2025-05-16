@@ -200,16 +200,14 @@ public class Config {
     }
 
     public static Config vod() {
-    Config item = AppDatabase.get().getConfigDao().findOne(0);
-    if (item != null) return item;
-    return create(0, "https://gitee.com/wangjie310/tv/raw/main/wj.json");
-}
+        Config item = AppDatabase.get().getConfigDao().findOne(0);
+        return item == null ? create(0) : item;
+    }
 
     public static Config live() {
-    Config item = AppDatabase.get().getConfigDao().findOne(0);
-    if (item != null) return item;
-    return create(0, "https://ghproxy.net/https://raw.githubusercontent.com/3105138/tv/main/box/live/live.txt");
-}
+        Config item = AppDatabase.get().getConfigDao().findOne(1);
+        return item == null ? create(1) : item;
+    }
 
     public static Config wall() {
         Config item = AppDatabase.get().getConfigDao().findOne(2);
