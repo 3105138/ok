@@ -69,27 +69,27 @@ public final class SubtitleDialog extends BaseDialog {
     }
 
    private void onUp(View view) {
-    float padding = subtitleView.getBottomPaddingFraction() + 0.005f;
-    subtitleView.setBottomPaddingFraction(padding);
-    Setting.putSubtitleBottomPadding(padding);
+  //  float padding = subtitleView.getBottomPaddingFraction() + 0.005f;
+  //  subtitleView.setBottomPaddingFraction(padding);
+  //  Setting.putSubtitleBottomPadding(padding);
 }
 
 private void onDown(View view) {
-    float padding = subtitleView.getBottomPaddingFraction() - 0.005f;
-    subtitleView.setBottomPaddingFraction(padding);
-    Setting.putSubtitleBottomPadding(padding);
+  //  float padding = subtitleView.getBottomPaddingFraction() - 0.005f;
+   // subtitleView.setBottomPaddingFraction(padding);
+  //  Setting.putSubtitleBottomPadding(padding);
 }
 
 private void onLarge(View view) {
-    float size = subtitleView.getFractionalTextSize() + 0.002f;
-    subtitleView.setFractionalTextSize(size);
-    Setting.putSubtitleTextSize(size);
+   // float size = subtitleView.getFractionalTextSize() + 0.002f;
+   // subtitleView.setFractionalTextSize(size);
+   // Setting.putSubtitleTextSize(size);
 }
 
 private void onSmall(View view) {
-    float size = subtitleView.getFractionalTextSize() - 0.002f;
-    subtitleView.setFractionalTextSize(size);
-    Setting.putSubtitleTextSize(size);
+   // float size = subtitleView.getFractionalTextSize() - 0.002f;
+  //  subtitleView.setFractionalTextSize(size);
+   // Setting.putSubtitleTextSize(size);
 }
 
     private void onReset(View view) {
