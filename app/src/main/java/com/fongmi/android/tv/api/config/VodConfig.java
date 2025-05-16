@@ -134,8 +134,9 @@ public class VodConfig {
     }
 
     private void loadConfigCache(Callback callback) {
-        if (!TextUtils.isEmpty(config.getJson()) && config.isCache()) checkJson(Json.parse(config.getJson()).getAsJsonObject(), callback);
-        else loadConfig(callback);
+       if (!TextUtils.isEmpty(config.getJson())) {
+    checkJson(Json.parse(config.getJson()).getAsJsonObject(), callback);
+}
     }
 
     private void checkJson(JsonObject object, Callback callback) {
