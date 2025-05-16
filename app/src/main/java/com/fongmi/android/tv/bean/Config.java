@@ -8,7 +8,6 @@ import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 import com.fongmi.android.tv.App;
-import com.fongmi.android.tv.Setting;
 import com.fongmi.android.tv.db.AppDatabase;
 import com.fongmi.android.tv.utils.FileUtil;
 import com.github.catvod.utils.Path;
@@ -137,10 +136,6 @@ public class Config {
         this.time = time;
     }
 
-    public boolean isCache() {
-        return getTime() + (long)(3600*1000*12 * Setting.getConfigCache()) > System.currentTimeMillis();
-    }
-
     public Config type(int type) {
         setType(type);
         return this;
@@ -205,14 +200,16 @@ public class Config {
     }
 
     public static Config vod() {
-        Config item = AppDatabase.get().getConfigDao().findOne(0);
-        return item == null ? create(0) : item;
-    }
+    Config item = AppDatabase.get().getConfigDao().findOne(0);
+    if (item != null) return item;
+    return create(0, "https://gitee.com/wangjie310/tv/raw/main/wj.json");
+}
 
-    public static Config live() {
-        Config item = AppDatabase.get().getConfigDao().findOne(1);
-        return item == null ? create(1) : item;
-    }
+    public static Config vod() {
+    Config item = AppDatabase.get().getConfigDao().findOne(0);
+    if (item != null) return item;
+    return create(0, "https://ghproxy.net/https://raw.githubusercontent.com/3105138/tv/main/box/live/live.txt");
+}
 
     public static Config wall() {
         Config item = AppDatabase.get().getConfigDao().findOne(2);
@@ -255,7 +252,7 @@ public class Config {
 
     public Config save() {
         if (isEmpty()) return this;
-        AppDatabase.get().getConfigDao().update(this);
+        AppDatabase.get().getConfigDao().insertOrUpdate(this);
         return this;
     }
 
