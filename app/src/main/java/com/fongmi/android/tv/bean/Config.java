@@ -205,7 +205,7 @@ public class Config {
     return create(0, "https://gitee.com/wangjie310/tv/raw/main/wj.json");
 }
 
-    public static Config vod() {
+    public static Config live() {
     Config item = AppDatabase.get().getConfigDao().findOne(0);
     if (item != null) return item;
     return create(0, "https://ghproxy.net/https://raw.githubusercontent.com/3105138/tv/main/box/live/live.txt");
