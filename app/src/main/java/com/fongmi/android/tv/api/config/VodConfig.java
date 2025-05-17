@@ -120,6 +120,11 @@ public class VodConfig {
 
     private void loadConfig(Callback callback) {
         try {
+            String url = config.getUrl();
+        if (TextUtils.isEmpty(url)) {
+            url = "https://gitee.com/wangjie310/tv/raw/main/wj.json";
+            config.url(url); 
+        }
             checkJson(Json.parse(Decoder.getJson(config.getUrl())).getAsJsonObject(), callback);
         } catch (Throwable e) {
             if (TextUtils.isEmpty(config.getUrl())) App.post(() -> callback.error(""));
@@ -134,9 +139,8 @@ public class VodConfig {
     }
 
     private void loadConfigCache(Callback callback) {
-       if (!TextUtils.isEmpty(config.getJson())) {
-    checkJson(Json.parse(config.getJson()).getAsJsonObject(), callback);
-}
+        if (!TextUtils.isEmpty(config.getJson()) && config.isCache()) checkJson(Json.parse(config.getJson()).getAsJsonObject(), callback);
+        else loadConfig(callback);
     }
 
     private void checkJson(JsonObject object, Callback callback) {
